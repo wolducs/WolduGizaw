@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+login page
+{% endblock title %}
+
+{% block content %}
+	
+	<div class="login-form mt-5 mb-5">
+		<form method="post" class="my-form mt-5 mb-5">
+			{% csrf_token %}
+			
+			<a href="{{request.META.HTTP_REFERER}}">
+				<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+  				<path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+				</svg>
+			</a>
+			<center><h2>Login Here</h2></center>
+			<br><br>
+			{% if messages %}
+				<div class="alert alert-danger">
+                	<p>{{messages}}</p>
+            	</div>
+			{% endif %}
+			<label>Email*</label><br>
+			<div class="input-group flex-nowrap mb-3">
+			  	<input type="email" class="form-control" name="email" placeholder="Email" required>
+			</div>
+			<label>Password*</label><br>
+			<div class="input-group flex-nowrap mb-3">
+			  	<input type="password" class="form-control" name="password" placeholder="Password" required>
+			</div>
+			<p>Haven't an account yet? Create one <a href="{% url 'sign-up' %}">Now</a> </p>
+			<button type="submit" class="btn btn-outline-primary ms-5">Login</button>
+			<button type="reset" class="btn btn-outline-danger ms-5">Cancel</button>
+		</form>
+	</div>
+{% endblock content %}

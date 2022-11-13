@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+News for Today
+{% endblock title %}
+
+{% block content %}
+<div class="news">
+	{%  if user.is_staff%}
+		<form method="post" class="news-form mb-5 mt-3 fixed">
+			{% csrf_token %}
+			<div class="input-group flex-nowrap mb-3">
+			  	<input type="text" class="form-control" name="title" placeholder="Title" required>
+			</div>
+			<div class="input-group flex-nowrap mb-3">
+			  	<textarea name="body" class="form-control" placeholder="Enter your Idea!"></textarea>
+			</div>
+			<button type="submit" class="btn btn-outline-primary">Post</button>
+		</form>
+		{% endif %}
+	<div class="card">
+		
+		{% if news %}
+			{% for new in news %}
+			<div class="card-header"><h2>{{new.added_by}}</h2></div>
+			<div class="card-title"><h3>{{new.title}}</h3></div>
+			<div class="card-body"><h4>{{new.body}}</h4></div>
+			<div class="card-footer"><p>{{new.added_at}}</p>
+				<button>Like</button>
+			</div>
+
+			{% endfor %}
+		{% endif %}
+	</div>
+</div>
+{% endblock content %}
+
