@@ -72,17 +72,22 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'TN84exFBgoV6x8PHx9BU',
+#         'HOST': 'containers-us-west-42.railway.app',
+#         'PORT': '6981',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'TN84exFBgoV6x8PHx9BU',
-        'HOST': 'containers-us-west-42.railway.app',
-        'PORT': '6981',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -126,6 +131,24 @@ STATICFILES_DIRS =[
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+# EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD='st.Marry@21'
+EMAIL_HOST_USER='beckyvswako@gmail.com'
+EMAIL_HOST_PASSWORD='dshhigizzqqcuovr'
+
+if os.getcwd() == '/app':
+    SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT=True
+    DEBUG=False
+
+
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -133,5 +156,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'main.User'
 
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL= 'login'
+
+
 django_heroku.settings(locals())
 
+JAZZMIN_SETTINGS = {
+    "site_title": "Admin Site",
+    "site_logo": "images/woldu.png",
+    "login_logo": "images/woldu.png",
+    "welcome_sign": "Welcome to the Woldu's Page",
+}

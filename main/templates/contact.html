@@ -1,0 +1,18 @@
+<div class="contact-form ms-5">
+				<form method="post" action="{% url 'basee' %}">
+					{% csrf_token %}
+					<div class="input-group mb-3">
+						<input type="email" class="form-control" name="email" placeholder="Email Address" required>
+					</div>
+					<div class="input-group mb-3">
+						<input type="tel" class="form-control" name="phone" placeholder="Phone Number" required>
+					</div>
+					<div class="input-group mb-3">
+						<textarea name="message" class="form-control" placeholder="Leave a message"></textarea>
+					</div>
+					
+					<div class="d-grid gap-2">
+  						<button class="btn btn-outline-primary" type="submit">Send</button>
+					</div>
+				</form>
+			</div>

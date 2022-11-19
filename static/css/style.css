@@ -1,4 +1,3 @@
-
 *{
 	margin: 0;
 	padding: 0;
@@ -11,7 +10,6 @@ nav{
 	width: 40%;
 	height: auto;
 	margin-left: 20%;
-/*	border: .2px solid blue;*/
 	border-radius: 30px;
 	padding: 20px;
 	background-color: #ffd;
@@ -38,16 +36,35 @@ footer .footer-one{
 	grid-template-columns: 2fr 3fr;
 }
 svg:hover{
-	font-size: 50px;
+	font-size: 100px;
 	color: blue;
+	transition: 2s;
+	cursor: pointer;
 }
 .body-container{
 	margin-top: 50px;
 	padding-top: 50px;
+	background-color: white;
+}
+main{
+	background-image: url('../images/heart.png');
+	background-repeat: no-repeat;
+	background-position: center;
 }
 /*
 Css for Sign up page and login [page]
 */
+.dropped-list{
+	display: none;
+}
+.drop-profile:hover .dropped-list{
+	display: block;
+	position: fixed;
+	width: 100%;
+	margin-left: -70px;
+	text-decoration: none;
+	list-style: none;
+}
 .restricted{
 	width: 50%;
 	margin-left: 10%;
@@ -66,4 +83,56 @@ Css for Sign up page and login [page]
 	margin-right: 30px;
 	border: 2px solid red;
 	border-radius: 20px;
+	position: fixed;
+}
+.contact{
+	display: flex;
+}
+@media screen and (max-width: 800px){
+	.home-page{
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+	.home-page .home-page-1{
+		display: grid;
+		grid-template-columns: 1fr;
+		width: 100%; 
+		height: auto;
+	}
+	.contact{
+		width: 100%;
+		text-align: center;
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+}
+.prof-image{
+	width: 30px;
+	height: 30px;
+}
+.prof-image img{
+	width: 100%;
+	border-radius: 50%;
+}
+.contact-form{
+	width: 40%;
+	background-color: #ffc;
+	margin-left: 30px;
+	padding-left: 20px;
+}
+.cont{
+	background-color: #ffc;
+}
+
+/*
+Password Reset Styles
+*/
+.password1{
+	margin: 60px;
+	display: flex;
+	flex-direction: column;
+}
+.password1 .reset-password{
+	padding: 60px;
+	
 }

@@ -11,24 +11,63 @@ Home page
 {% block content %}
 
 <div class="container">
-	<div class="news">
-		<h1>To News</h1>
-	</div>
+	<main>
+		<section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="font-weight-light">Welcome to Learning Django Framework</h1>
+          <p class="font-weight-light">Hello! If you want to learn more about django framework This site is just for you! Make sure to sign up and get through the process. Make sure to subscribe my official youtube channel!</p>
+          <p>
+            <a href="#" class="btn btn-outline-primary my-2">Sign Up </a>
+            <a href="#" class="btn btn-outline-success my-2">Go to youtube channel</a>
+          </p>
+        </div>
+      </div>
+    </section>
+	</main>
+	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+		{% for i in form %}
+				<div class="col">
+            <div class="card shadow-sm"><img src="{% static 'images/heart.png' %}">
+              
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+      </div>
+
+
 	<div class="home-page">
-		<img src="{% static 'images/heart.png' %}" />
+		<img class="card shadow-sm mt-3" src="{% static 'images/heart.png' %}" />
 		<div class="home-page-1">
-			<div class="card">
+			<div class="card shadow-sm m-3">
 				<div class="card-header"><h2>Dire Dawa University</h2></div>
 				<div class="card-title"><h3>Dire Dawa University Students</h3></div>
 				<div class="card-body"><h4>Dire Dawa University Students Will be registered on friday!</h4></div>
 				<div class="card-footer"><p>Today 2:30 .pm</p></div>
 			</div>
-			<div class="card">
+			<div class="card m-3">
 				<div class="card-header"><h2>Computer Science Students</h2></div>
 				<div class="card-title"><h3>Class of 2022 GC</h3></div>
 				<div class="card-body"><h4>Dire Dawa University Students Will be registered on friday!</h4></div>
 				<div class="card-footer"><p>Today 2:30 .pm</p></div>
 			</div>
+
+		</div>
+	</div>
+	<div class="body-home">
+		<div class="container">
+			
 		</div>
 	</div>
 </div>

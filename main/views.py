@@ -1,23 +1,55 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import Group
 from django.contrib import messages
 from .forms import UserForm, NewsForm
 from .models import User, News
 from .decorators import authenticated_user, allowed_user
 
+
 # Create your views here.
 def home(request):
-	return render(request, 'main/home.html', {})
+	lis = ['n', 'm', 'e', 'w', 'q']
+	form = lis
+
+	if request.method == 'POST':
+		email = request.POST.get('email')
+		phone = request.POST.get('phone')
+		print("=================")
+	return render(request, 'main/home.html', {"form":form})
 
 
+from django.conf import settings
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+
+def message(request):
+	template = render_to_string('main/email_send.html', {"name":request.user.username})
+	if request.method == 'POST':
+		email = request.POST.get('email')
+		phone = request.POST.get('phone')
+		user = request.user
+		email = EmailMessage(
+				f"Hello {user} !!",
+				template,
+				settings.EMAIL_HOST_USER,
+				[email],
+			)
+		email.fail_silently = False
+		email.send()
+		return render(request, 'success/contact.html', {})
+	else:
+		return render(request, 'main/home.html', {})
 
 def about_page(request):
 	success = None
 	students = User.objects.all()
+	number_of_students = students.count()
 	if request.method == 'POST':
 		success = print_excel(request.POST)
 
 	context = {
+		"number_of_students":number_of_students,
 		"students":students,
 		"success": success
 	}
@@ -54,11 +86,14 @@ def logout_page(request):
 
 
 def sign_up(request):
+	
 	if request.method == 'POST':
 		form = UserForm(request.POST)
+		email = request.POST.get('email')
+		phone_number = request.POST.get('phone_number')
 		if form.is_valid():
-			user = form.save()
-			login(request, user)
+			user = form.save(commit=False)
+			# login(request, user)
 			return redirect('home')
 	else:
 		form = UserForm()
@@ -73,20 +108,19 @@ def news_page(request):
 		if form.is_valid():
 			news = form.save(commit=False)
 			news.added_by = request.user
+			news.like = None
 			news.save()
 			return redirect('news')
 	else:
 		form = NewsForm()
 	context ={
-	"news":news,
-	"form":form
+		"news":news,
+		"form":form
 	}
 	return render(request, 'main/news.html', context)
 
 def restricted(request):
 	return render(request, 'error/restricted.html', {})	
-
-
 
 
 
